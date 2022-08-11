@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(SDLCMakeStarter LANGUAGES CXX)
+project(Tankzoid LANGUAGES CXX)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
@@ -12,22 +12,22 @@ include_directories(${OpenGL_INCLUDE_DIRS})
 include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
 include_directories(include/)
 
-file(GLOB RoadVisualizer_SRCS
+file(GLOB Tankzoid_SRCS
     "include/*.h*",
     "src/*.cpp"
 )
 
 add_executable(
-    RoadVisualizer 
-    ${RoadVisualizer_SRCS}
+    Tankzoid 
+    ${Tankzoid_SRCS}
 )
 
 target_link_libraries(
-    RoadVisualizer PRIVATE 
+    Tankzoid PRIVATE 
     ${SDL2_LIBRARIES}
     ${SDL2_IMAGE_LIBRARIES}
     OpenGL::OpenGL
 )
 
-target_compile_features(RoadVisualizer PRIVATE cxx_std_17)
-install(TARGETS RoadVisualizer)
+target_compile_features(Tankzoid PRIVATE cxx_std_17)
+install(TARGETS Tankzoid)

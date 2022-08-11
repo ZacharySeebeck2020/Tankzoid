@@ -26,7 +26,7 @@ bool cmdOptionExists(char** begin, char** end, const std::string& option)
 
 int main(int argc, char *argv[])
 {
-	std::cout << "C++ SDL cMake Starter	Program " << VERSION << std::endl;
+	std::cout << "Tankzoid " << VERSION << std::endl;
 	std::cout << "Written By Zachary Seebeck" << std::endl;
 
 	// If -h is passed in as an argument, print the help message and exit
@@ -69,15 +69,15 @@ int main(int argc, char *argv[])
 	// Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) > 0) {
 		Logger::getInstance().log("SDL_Init Error: " + std::string(SDL_GetError()), LOG_FATAL);
-		return 1;
+		exit(1);
 	}
 
 	if (!IMG_Init(IMG_INIT_PNG)) {
 		Logger::getInstance().log("IMG_Init Error: " + std::string(IMG_GetError()), LOG_FATAL);
-		return 1;
+		exit(1);
 	}
 
-	RenderWindow window(1280, 720, "C++ SDL cMake Starter Program");
+	RenderWindow window(1280, 720, "Tankzoid");
 
 	bool isRunning = true;
 	SDL_Event event;

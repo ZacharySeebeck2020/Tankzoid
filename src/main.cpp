@@ -4,9 +4,12 @@
 #include <SDL_image.h>
 
 #include "Logger.h"
-#include "RenderWindow.hpp"
+#include "Game.hpp"
+#include "Sprite.hpp"
+#include "Entity.hpp"
 
 const std::string VERSION = "0.0.1";
+Game* game = nullptr;
 
 char* getCmdOption(char ** begin, char ** end, const std::string & option)
 {
@@ -22,7 +25,6 @@ bool cmdOptionExists(char** begin, char** end, const std::string& option)
 {
     return std::find(begin, end, option) != end;
 }
-
 
 int main(int argc, char *argv[])
 {
@@ -48,13 +50,12 @@ int main(int argc, char *argv[])
 		std::cout << "--------------------------------------------------------------------------------" << std::endl;
 		return 0;
     }
-
 	if (cmdOptionExists(argv, argv+argc, "-v"))
 	{
 		std::cout << "Version: " << VERSION << std::endl;
 		return 0;
 	}
-
+	
 	// Set the log level if -l is passed in as an argument
 	if (cmdOptionExists(argv, argv+argc, "-l"))
 	{
@@ -65,37 +66,18 @@ int main(int argc, char *argv[])
 		}
 	}
 
+	// Start The Game
+	game = new Game();
 
-	// Initialize SDL
-	if (SDL_Init(SDL_INIT_VIDEO) > 0) {
-		Logger::getInstance().log("SDL_Init Error: " + std::string(SDL_GetError()), LOG_FATAL);
-		exit(1);
+	game->Init(1280, 720, "Tankzoid");
+
+	while(game->Running()) {
+		game->HandleEvents();
+		game->Update();
+		game->Render();
 	}
 
-	if (!IMG_Init(IMG_INIT_PNG)) {
-		Logger::getInstance().log("IMG_Init Error: " + std::string(IMG_GetError()), LOG_FATAL);
-		exit(1);
-	}
-
-	RenderWindow window(1280, 720, "Tankzoid");
-
-	bool isRunning = true;
-	SDL_Event event;
-	while (isRunning)
-	{
-		while (SDL_PollEvent(&event))
-		{
-			if (event.type == SDL_QUIT)
-			{
-				isRunning = false;
-			}
-		}
-
-
-		// Keep this as the last thing the update 
-		// loop does. It is the final step to render.
-		window.Update();
-	}
+	game->Clean();
 
 	return 0;
 }

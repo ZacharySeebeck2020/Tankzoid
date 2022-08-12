@@ -12,6 +12,10 @@ include_directories(${OpenGL_INCLUDE_DIRS})
 include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
 include_directories(include/)
 
+add_custom_target(game_assets
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_LIST_DIR}/assets ${CMAKE_CURRENT_BINARY_DIR}/assets
+)
+
 file(GLOB Tankzoid_SRCS
     "include/*.h*",
     "src/*.cpp"
@@ -21,6 +25,8 @@ add_executable(
     Tankzoid 
     ${Tankzoid_SRCS}
 )
+
+add_dependencies(Tankzoid game_assets)
 
 target_link_libraries(
     Tankzoid PRIVATE 

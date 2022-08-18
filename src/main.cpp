@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 	// Start The Game
 	game = new Game();
 
-	game->Init(1280, 720, "Tankzoid");
+	game->Init(1280, 704, "Tankzoid");
 
 	while(game->Running()) {
 		game->HandleEvents();

@@ -1,7 +1,7 @@
 #include "Utilities.hpp"
 
-SDL_Surface* LoadPNG(std::string path) {
-    SDL_Surface *image_surface = IMG_Load(path.c_str());
+SDL_Texture* LoadPNG(std::string p_path, SDL_Renderer* p_renderer) {
+    SDL_Texture *image_surface = IMG_LoadTexture(p_renderer, p_path.c_str());
 
     if(!image_surface)
         return 0;

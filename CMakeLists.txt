@@ -7,6 +7,22 @@ find_package(SDL2 REQUIRED)
 find_package(OpenGL REQUIRED COMPONENTS OpenGL)
 find_package(SDL2_image REQUIRED)
 
+# Add ImGUI
+add_library(
+	imgui
+	./libs/ImGui/imgui.cpp
+	./libs/ImGui/imgui_draw.cpp
+	./libs/ImGui/imgui_tables.cpp
+	./libs/ImGui/imgui_widgets.cpp
+	./libs/ImGui/imgui_demo.cpp
+	./libs/ImGui/imgui_impl_sdl.cpp
+	./libs/ImGui/imgui_impl_sdlrenderer.cpp
+)
+
+target_include_directories(imgui PUBLIC ${SDL2_INCLUDE_DIRS})
+target_include_directories(imgui PUBLIC ./libs/ImGui/)
+
+
 include_directories(${SDL2_INCLUDE_DIRS})
 include_directories(${OpenGL_INCLUDE_DIRS})
 include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
@@ -17,8 +33,10 @@ add_custom_target(game_assets
 )
 
 file(GLOB Tankzoid_SRCS
-    "include/*.h*",
-    "src/*.cpp"
+    "include/*.h*"
+	"include/Entities/*.h*"
+	"src/*.cpp"
+	"src/Entities/*.cpp"
 )
 
 add_executable(
@@ -33,6 +51,7 @@ target_link_libraries(
     ${SDL2_LIBRARIES}
     ${SDL2_IMAGE_LIBRARIES}
     OpenGL::OpenGL
+	imgui
 )
 
 target_compile_features(Tankzoid PRIVATE cxx_std_17)

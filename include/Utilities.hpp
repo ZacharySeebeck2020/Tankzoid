@@ -3,4 +3,4 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
-SDL_Surface* LoadPNG(std::string path);
+SDL_Texture* LoadPNG(std::string p_path, SDL_Renderer* p_renderer);

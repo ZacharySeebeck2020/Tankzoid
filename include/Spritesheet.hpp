@@ -5,13 +5,17 @@
 
 class Spritesheet {
 private: 
+	Spritesheet() {};
 	SDL_Rect clip;
-	SDL_Surface *spritesheetImage;
+	SDL_Texture *spritesheetImage;
 
 public:
-	Spritesheet(std::string p_path, int p_rows, int p_columns);
-	~Spritesheet();
-
+	static Spritesheet* getInstance() {
+		static Spritesheet instance;
+		return &instance;
+	};
+	
+	void LoadSpritesheet(std::string p_path, int p_rows, int p_columns, SDL_Renderer* p_renderer);
 	void SelectActiveSprite(SDL_Point p_location);
-	void DrawSelectedSprite(SDL_Surface* p_windowSurface, SDL_Rect* p_position);
+	void DrawSelectedSprite(SDL_Renderer* p_renderer, SDL_Rect* p_position, double p_angle = 0);
 };

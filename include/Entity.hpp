@@ -5,16 +5,19 @@
 
 class Entity
 {
-private:
+protected:
 	std::string name;
 	SDL_Rect screenPosition; 
 	SDL_Point activeSprite;
-	Spritesheet spritesheet;
+	Spritesheet* spritesheet;
+	SDL_Renderer* renderer;
 
 public:
-	Entity(std::string p_name, SDL_Point p_activeSprite, SDL_Rect p_screenPosition);
+	Entity(std::string p_name, SDL_Point p_activeSprite, SDL_Rect p_screenPosition, SDL_Renderer* p_renderer);
 	~Entity();
 
-	void Draw(SDL_Window* p_window);
+	void HandleEvents(SDL_Event event);
+	void Update();
+	void Draw();
 
 };

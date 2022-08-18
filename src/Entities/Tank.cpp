@@ -20,7 +20,7 @@ void Tank::Update()
 
 void Tank::Draw()
 {
-	Logger::getInstance().log("Drawing Tank", LogLevel::LOG_INFO);
+	Entity::Draw();
 	turretEntity.Draw();
 }
 

@@ -16,8 +16,8 @@ public:
 	Entity(std::string p_name, SDL_Point p_activeSprite, SDL_Rect p_screenPosition, SDL_Renderer* p_renderer);
 	~Entity();
 
-	void HandleEvents(SDL_Event event);
-	void Update();
-	void Draw();
+	virtual void HandleEvents(SDL_Event event);
+	virtual void Update();
+	virtual void Draw();
 
 };

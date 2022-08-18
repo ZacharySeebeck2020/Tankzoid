@@ -50,7 +50,7 @@ target_link_libraries(
     Tankzoid PRIVATE 
     ${SDL2_LIBRARIES}
     ${SDL2_IMAGE_LIBRARIES}
-    OpenGL::OpenGL
+    ${OpenGL_LIBRARIES}
 	imgui
 )
 

@@ -1,6 +1,7 @@
 #include "Game.hpp"
 #include "Logger.h"
 #include "Entities/Tank.hpp"
+// #include "Entities/Player.hpp"
 #include "Sprite.hpp"
 
 #include "imgui.h"
@@ -46,6 +47,7 @@ void Game::Init(int width, int height, const std::string title) {
 	ImGui::StyleColorsDark();
 
 	entityManager.AddEntity(new Tank({640,320,64,64}, renderer, Sprites["PlayerTankBase"], Sprites["PlayerTankTurret"]));
+	// entityManager.AddEntity(new Player({140,140,64,64}, renderer));
 	// entityManager.AddEntity(new Entity("Player Turret", Sprites["PlayerTankTurret"], {640,320,64,64}, renderer));
 
 	// entityManager.AddEntity(new Entity("Enemy Tank", Sprites["DarkBlueTankBase"], {300,320,64,64}, renderer));

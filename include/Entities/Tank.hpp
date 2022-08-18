@@ -1,8 +1,9 @@
+#pragma once
 #include <SDL.h>
 #include "Entity.hpp"
 
 class Tank: public Entity {
-private:
+protected:
 	int health = 10;
 	int maxHealth = 10;
 	int minHealth = 1;
@@ -18,9 +19,9 @@ public:
 	Tank(SDL_Rect p_screenPosition, SDL_Renderer* p_renderer, SDL_Point p_tankBodySprite, SDL_Point p_tankTurretSprite);
 	~Tank();
 	
-	void HandleEvents(SDL_Event event);
-	void Update();
-	void Draw();
+	virtual void HandleEvents(SDL_Event event);
+	virtual void Update();
+	virtual void Draw() override;
 	void TakeDamage(int damage);
 	void Heal(int heal);
 	void SetSpeed(int p_speed);

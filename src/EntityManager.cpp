@@ -25,7 +25,6 @@ void EntityManager::Draw()
 {
 	for (int i = 0; i < entities.size(); i++)
 	{
-		Logger::getInstance().log("Drawing entity " + std::to_string(i));
 		entities[i]->Draw();
 	}
 }
